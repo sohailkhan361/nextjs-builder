@@ -1,5 +1,6 @@
 import Todos from '../model/Todo';
-import mongoose from 'mongoose';
+import dbConnect from '@/utils/dbConnect';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
   async function newTodo(data: any) {
@@ -8,7 +9,7 @@ export default function Home() {
     let todo = data.get('todo')?.valueOf();
 
     try{
-      await mongoose.connect('mongodb://localhost:27017/NextJS_DB_POC');
+      dbConnect();
       let newTodo = new Todos({ title, todo});
       await newTodo.save();
 
@@ -16,6 +17,8 @@ export default function Home() {
     } catch (error) {
       console.log(error);
     }
+
+    redirect('/show');
   }
 
   return (
@@ -36,4 +39,4 @@ export default function Home() {
       </div>
     </main>
   )
-}
+};
