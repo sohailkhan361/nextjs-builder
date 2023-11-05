@@ -40,4 +40,21 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 > npm init builder.io@latest
 > npm run dev
 > Go to: http://localhost:3000
+> Develop UI using Builder.io
+> Publish the components which can be reused.
+> npm install mongoose
+> Configurations:
+const nextConfig = withBuilderDevTools({
+    experimental: {
+        serverActions: true
+    }
+});
+
+'use server';
+in the async function
+
+- Read:
 > 
+
+
+
