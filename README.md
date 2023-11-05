@@ -66,7 +66,13 @@ dbConnect();
 let update = await Todo.findByIdAndUpdate({ _id: params.id}, { title, todo })
 
 - Delete
-> 
+> // Function: Delete the data
+    async function deleteTodo(data: any) {
+        'use server'
+        let id = JSON.parse(data.get('id')?.valueOf());
+        await Todo.deleteOne({ _id: id });
+        redirect('/show');
+    }
 
 
 
