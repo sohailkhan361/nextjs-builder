@@ -8,7 +8,7 @@ const edit = async ({ params }: { params: { id: string } }) => {
     dbConnect();
     const todo = await Todo.findOne({ _id: params.id });
 
-    // Update
+    // Function: Update the data
     async function updateTodo(data: any) {
         'use server';
         let title = data.get('title')?.valueOf();
@@ -47,7 +47,7 @@ const edit = async ({ params }: { params: { id: string } }) => {
                             defaultValue={todo?.todo}
                         />
                     </div>
-                    <button type="submit" className='p-3 font-bold bg-green-600 hover:bg-green-300 text-white'>
+                    <button type="submit" className='p-3 font-bold bg-green-600 hover:bg-green-300 text-white rounded-2xl'>
                         Edit
                     </button>
                 </form>
