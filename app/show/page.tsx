@@ -1,13 +1,14 @@
 import React from 'react'
-import Todo from '../../model/Todo';
+import Todo from '@/model/Todo';
 import dbConnect from '@/utils/dbConnect';
+import Link from 'next/link';
 
 const show = async () => {
+    // Read the data
     dbConnect();
     const todos = await Todo.find();
 
     return (
-        <>
         <main className="flex min-h-screen flex-col p-10">
             <h1 className='font-bold text-xl m-2'>Todos</h1>
             <div className='m-2'>
@@ -29,9 +30,12 @@ const show = async () => {
                                             <button className="p-2 m-2 bg-red-600 text-white hover:cursor-pointer hover:bg-red-400">
                                                 Delete
                                             </button>
-                                            <button className="p-2 m-2 bg-blue-600 text-white hover:cursor-pointer hover:bg-blue-200">
-                                                Edit
-                                            </button>
+                                            <Link href={'/edit/' + element._id}>
+                                                <button className="p-2 m-2 bg-blue-600 text-white hover:cursor-pointer hover:bg-blue-200">
+                                                    Edit
+                                                </button>
+                                            </Link>
+                                            
                                         </div>
                                     </li>
                                 </ul>
@@ -41,7 +45,6 @@ const show = async () => {
                 </div>
             </div>
         </main>
-        </>
     )
 }
 

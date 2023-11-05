@@ -1,8 +1,9 @@
-import Todos from '../model/Todo';
+import Todos from '@/model/Todo';
 import dbConnect from '@/utils/dbConnect';
 import { redirect } from 'next/navigation';
 
 export default function Home() {
+  // Add the data
   async function newTodo(data: any) {
     'use server';
     let title = data.get('title')?.valueOf();

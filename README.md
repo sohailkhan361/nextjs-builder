@@ -53,8 +53,21 @@ const nextConfig = withBuilderDevTools({
 'use server';
 in the async function
 
+- Read
+> dbConnect();
+    const todos = await Todo.find();
+
 - Update
->
+> [id]: This is the dynamic part of the route. It's enclosed in square brackets [], indicating that it's a dynamic parameter. The name "id" is used as a placeholder for the actual value that will be part of the URL. You can have multiple dynamic parameters in a single route, each enclosed in square brackets
+For example, if you have a URL like /folder/123/page, the [id] parameter will be 123, and your page.tsx component can use this value to fetch and display content related to that specific ID.
+
+> 'use server';
+dbConnect();
+let update = await Todo.findByIdAndUpdate({ _id: params.id}, { title, todo })
+
+- Delete
+> 
+
 
 
 
