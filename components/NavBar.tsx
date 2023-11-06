@@ -18,10 +18,17 @@ function NavBar() {
         async function fetchUserData() {
             try {
                 const { data } = await builder.get('demo-data', {
-                    apiKey: process.env.NEXT_PUBLIC_BUILDER_API_KEY
+                    apiKey: process.env.NEXT_PUBLIC_BUILDER_API_KEY,
+                    query: {
+                        name: 'Jon'
+                    }
                 }).promise();
                 setUserData(data);
                 console.log(data);
+
+                const allData = await builder.getAll('demo-data', );
+                console.log(allData);
+
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -47,11 +54,6 @@ function NavBar() {
                 <Link href={'/show'}>
                     <h2 className='hover:bg-blue-500 px-3 cursor-pointer p-2 rounded-full hover:text-white'>
                         Show
-                    </h2>
-                </Link>
-                <Link href={'/explore'}>
-                    <h2 className='hover:bg-blue-500 px-3 cursor-pointer p-2 rounded-full hover:text-white'>
-                        Explore
                     </h2>
                 </Link>
                 <Link href={'/contact-us'}>
