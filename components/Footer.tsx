@@ -38,7 +38,6 @@ const Footer = () => {
                 </div>
             </div>
 
-
             <div className='flex justify-between items-center flex-wrap mt-10 border-t border-gray-100 sm:px-16 px-6 py-10'>
                 <p>@2023 Podium Audio. All Rights Reserved</p>
                 <div className='flex-1 flex sm:justify-end justify-center max-sm:mt-4 gap-10'>

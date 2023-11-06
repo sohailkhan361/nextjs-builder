@@ -5,8 +5,6 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { builder } from '@builder.io/sdk';
 
-// builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
-
 interface user {
     name: string,
     age: number
@@ -16,6 +14,7 @@ function NavBar() {
     const [userData, setUserData] = useState<user>({ name: 'User', age: 18 });
 
     useEffect(() => {
+        // GET Builder.io model data created by user
         async function fetchUserData() {
             try {
                 const { data } = await builder.get('demo-data', {
@@ -27,10 +26,10 @@ function NavBar() {
                 console.error('Error:', error);
             }
         }
-    
+
         fetchUserData();
     }, []);
-    
+
 
     return (
         <div className='flex items-center justify-between p-3 px-5 shadow-sm border-b-[1px]'>
