@@ -1,8 +1,37 @@
+'use client';
+
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { builder } from '@builder.io/sdk';
+
+// builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+
+interface user {
+    name: string,
+    age: number
+}
 
 function NavBar() {
+    const [userData, setUserData] = useState<user>({ name: 'User', age: 18 });
+
+    useEffect(() => {
+        async function fetchUserData() {
+            try {
+                const { data } = await builder.get('demo-data', {
+                    apiKey: process.env.NEXT_PUBLIC_BUILDER_API_KEY
+                }).promise();
+                setUserData(data);
+                console.log(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    
+        fetchUserData();
+    }, []);
+    
+
     return (
         <div className='flex items-center justify-between p-3 px-5 shadow-sm border-b-[1px]'>
             <Image src='/logo.png'
@@ -31,6 +60,9 @@ function NavBar() {
                         Contact Us
                     </h2>
                 </Link>
+            </div>
+            <div className='flex bg-black text-center text-white font-bold rounded-full w-10 h-10 items-center justify-center'>
+                {userData.name}
             </div>
         </div>
     )
